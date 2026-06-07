@@ -16,10 +16,13 @@ def load_prog_list(univ_id):
 
 def app():
     st.markdown('<h1 class="neo-title" style="font-size:2rem;">Bandingkan Pilihan</h1>', unsafe_allow_html=True)
-    st.markdown('<div style="background:#fff;border:2px solid #000;box-shadow:4px 4px 0 0 #000;padding:1.5rem;margin:1rem 0;">Pilih dua program studi dari universitas berbeda untuk dibandingkan secara langsung.</div>', unsafe_allow_html=True)
+    st.markdown('<div style="background:#fff;border:3px solid #000;box-shadow:6px 6px 0 0 #000;padding:1.5rem;margin:1rem 0;">Pilih dua program studi dari universitas berbeda untuk dibandingkan secara langsung.</div>', unsafe_allow_html=True)
     st.markdown("---")
 
     unis = load_univ_list()
+    if not isinstance(unis, dict) or not unis:
+        st.warning("Tidak dapat memuat daftar universitas. Pastikan backend berjalan.")
+        return
     univ_names = list(unis.keys())
     univ_ids = list(unis.values())
 
@@ -28,7 +31,7 @@ def app():
     with col1:
         st.markdown("""
         <h3 style="font-weight:900;text-transform:uppercase;font-size:0.9rem;padding:0.5rem 1rem;
-                   background:#0b2406;color:#fff;border:2px solid #000;box-shadow:3px 3px 0 0 #000;">
+                   background:#0b2406;color:#fff;border:3px solid #000;box-shadow:4px 4px 0 0 #000;">
             Pilihan Pertama
         </h3>
         """, unsafe_allow_html=True)
@@ -50,7 +53,7 @@ def app():
     with col2:
         st.markdown("""
         <h3 style="font-weight:900;text-transform:uppercase;font-size:0.9rem;padding:0.5rem 1rem;
-                   background:#1f0b24;color:#fff;border:2px solid #000;box-shadow:3px 3px 0 0 #000;">
+                   background:#1f0b24;color:#fff;border:3px solid #000;box-shadow:4px 4px 0 0 #000;">
             Pilihan Kedua
         </h3>
         """, unsafe_allow_html=True)
@@ -83,7 +86,7 @@ def app():
                 perbandingan = data.get("perbandingan", {})
 
                 st.markdown(f"""
-                <div style="background:#fff;border:2px solid #000;box-shadow:3px 3px 0 0 #000;
+                <div style="background:#fff;border:3px solid #000;box-shadow:4px 4px 0 0 #000;
                             padding:1rem;margin:1rem 0;font-weight:700;text-align:center;">
                     {len(hasil)} pilihan berhasil dibandingkan
                 </div>
@@ -114,7 +117,7 @@ def app():
                     st.markdown("---")
                     st.markdown("""
                     <h3 style="font-weight:900;text-transform:uppercase;font-size:1rem;
-                               border-left:4px solid #FF4911;padding-left:1rem;margin:1rem 0;">
+                               border-left:6px solid #FFCC00;padding-left:1rem;margin:1rem 0;">
                         Hasil Perbandingan
                     </h3>
                     """, unsafe_allow_html=True)
@@ -131,7 +134,7 @@ def app():
                             <div style="font-weight:700;text-transform:uppercase;font-size:0.7rem;color:#888;">Tertinggi</div>
                             <div style="font-weight:900;font-size:1.1rem;">{t.get('program', '-')}</div>
                             <div style="font-size:0.8rem;">{t.get('universitas', '')}</div>
-                            <span class="neo-badge neo-badge-orange" style="margin-top:0.5rem;">{t.get('score', '-')}</span>
+                            <span class="neo-badge neo-badge-red" style="margin-top:0.5rem;">{t.get('score', '-')}</span>
                         </div>
                         """, unsafe_allow_html=True)
                     with c2:
@@ -147,13 +150,13 @@ def app():
                         st.markdown(f"""
                         <div class="neo-card" style="text-align:center;">
                             <div style="font-weight:700;text-transform:uppercase;font-size:0.7rem;color:#888;">Selisih</div>
-                            <div style="font-weight:900;font-size:2rem;color:#FF4911;">{selisih_str}</div>
+                            <div style="font-weight:900;font-size:2rem;color:#FF3333;">{selisih_str}</div>
                             <div style="font-size:0.8rem;">poin</div>
                         </div>
                         """, unsafe_allow_html=True)
 
                     st.markdown(f"""
-                    <div style="background:#FFD000;border:2px solid #000;box-shadow:3px 3px 0 0 #000;
+                    <div style="background:#FF3333;color:#fff;border:3px solid #000;box-shadow:4px 4px 0 0 #000;
                                 padding:1.5rem;text-align:center;font-weight:900;font-size:1.1rem;margin-top:1rem;">
                         Kesimpulan: {t.get('universitas', '-')} unggul {selisih_str} poin
                         dari {r.get('universitas', '-')}

@@ -54,4 +54,4 @@ def app():
                                                 </div>
                                                 """, unsafe_allow_html=True)
                 else:
-                    st.markdown('<div style="background:#FFD000;border:2px solid #000;padding:1.5rem;text-align:center;font-weight:700;">Tidak ada hasil</div>', unsafe_allow_html=True)
+                    st.markdown('<div style="background:#FFCC00;border:3px solid #000;padding:1.5rem;text-align:center;font-weight:700;">Tidak ada hasil</div>', unsafe_allow_html=True)

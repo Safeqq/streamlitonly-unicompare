@@ -80,6 +80,10 @@ def login(username, password):
                           json={"username": username, "password": password}, timeout=10)
         if r.status_code == 401:
             return {"error": "Username atau password salah"}, True
+        if r.status_code == 422:
+            detail = r.json().get("detail", [{}])
+            msg = detail[0].get("msg", "Data tidak valid") if isinstance(detail, list) else str(detail)
+            return {"error": msg}, True
         r.raise_for_status()
         return r.json(), False
     except Exception as e:
@@ -109,42 +113,6 @@ def get_me(token):
     except Exception as e:
         return _handle_error(e)
 
-def get_favorites(token):
-    try:
-        r = requests.get(f"{API_BASE_URL}/api/favorites",
-                         headers=_get_headers(token), timeout=10)
-        if r.status_code == 401:
-            return {"error": "Sesi telah berakhir, silakan login ulang"}, True
-        r.raise_for_status()
-        return r.json(), False
-    except Exception as e:
-        return _handle_error(e)
-
-def add_favorite(token, university_name):
-    try:
-        r = requests.post(f"{API_BASE_URL}/api/favorites",
-                          json={"university_name": university_name},
-                          headers=_get_headers(token), timeout=10)
-        if r.status_code == 401:
-            return {"error": "Sesi telah berakhir, silakan login ulang"}, True
-        r.raise_for_status()
-        return r.json(), False
-    except Exception as e:
-        return _handle_error(e)
-
-def remove_favorite(token, university_name):
-    try:
-        r = requests.delete(f"{API_BASE_URL}/api/favorites/{university_name}",
-                            headers=_get_headers(token), timeout=10)
-        if r.status_code == 404:
-            return {"error": "Favorit tidak ditemukan"}, True
-        if r.status_code == 401:
-            return {"error": "Sesi telah berakhir, silakan login ulang"}, True
-        r.raise_for_status()
-        return r.json(), False
-    except Exception as e:
-        return _handle_error(e)
-
 def get_admin_users(token):
     try:
         r = requests.get(f"{API_BASE_URL}/api/admin/users",
@@ -166,6 +134,64 @@ def delete_admin_user(token, username):
             return {"error": "Tidak dapat menghapus diri sendiri"}, True
         if r.status_code == 404:
             return {"error": "User tidak ditemukan"}, True
+        if r.status_code == 403:
+            return {"error": "Akses khusus admin"}, True
+        r.raise_for_status()
+        return r.json(), False
+    except Exception as e:
+        return _handle_error(e)
+
+def create_admin_university(token, id, name, sources=None):
+    try:
+        r = requests.post(f"{API_BASE_URL}/api/admin/universities",
+                          json={"id": id, "name": name, "sources": sources or []},
+                          headers=_get_headers(token), timeout=10)
+        if r.status_code == 403:
+            return {"error": "Akses khusus admin"}, True
+        r.raise_for_status()
+        return r.json(), False
+    except Exception as e:
+        return _handle_error(e)
+
+def update_admin_university(token, university_id, name=None, sources=None):
+    try:
+        body = {}
+        if name is not None:
+            body["name"] = name
+        if sources is not None:
+            body["sources"] = sources
+        r = requests.put(f"{API_BASE_URL}/api/admin/universities/{university_id}",
+                          json=body,
+                          headers=_get_headers(token), timeout=10)
+        if r.status_code == 404:
+            return {"error": "Universitas tidak ditemukan"}, True
+        if r.status_code == 403:
+            return {"error": "Akses khusus admin"}, True
+        r.raise_for_status()
+        return r.json(), False
+    except Exception as e:
+        return _handle_error(e)
+
+def delete_admin_university(token, university_id):
+    try:
+        r = requests.delete(f"{API_BASE_URL}/api/admin/universities/{university_id}",
+                            headers=_get_headers(token), timeout=10)
+        if r.status_code == 404:
+            return {"error": "Universitas tidak ditemukan"}, True
+        if r.status_code == 403:
+            return {"error": "Akses khusus admin"}, True
+        r.raise_for_status()
+        return r.json(), False
+    except Exception as e:
+        return _handle_error(e)
+
+def update_admin_university_programs(token, university_id, programs):
+    try:
+        r = requests.put(f"{API_BASE_URL}/api/admin/universities/{university_id}/programs",
+                          json={"programs": programs},
+                          headers=_get_headers(token), timeout=10)
+        if r.status_code == 404:
+            return {"error": "Universitas tidak ditemukan"}, True
         if r.status_code == 403:
             return {"error": "Akses khusus admin"}, True
         r.raise_for_status()

@@ -3,7 +3,7 @@ from utils.api import compare_score
 
 def app():
     st.markdown('<h1 class="neo-title" style="font-size:2rem;">Bandingkan Skor</h1>', unsafe_allow_html=True)
-    st.markdown('<div style="background:#fff;border:2px solid #000;box-shadow:4px 4px 0 0 #000;padding:1.5rem;margin:1rem 0;">Masukkan skor UTBK Anda untuk melihat program studi yang sesuai dengan kemampuanmu.</div>', unsafe_allow_html=True)
+    st.markdown('<div style="background:#fff;border:3px solid #000;box-shadow:6px 6px 0 0 #000;padding:1.5rem;margin:1rem 0;">Masukkan skor UTBK Anda untuk melihat program studi yang sesuai dengan kemampuanmu.</div>', unsafe_allow_html=True)
     st.markdown("---")
 
     col1, col2, col3 = st.columns(3)
@@ -17,7 +17,7 @@ def app():
         with st.spinner("Mencari..."):
             data, err = compare_score(score=user_score, q=search_q, universities=univ_filter, limit=int(limit))
             if not err:
-                st.markdown(f'<div style="display:flex;align-items:center;gap:1rem;margin:1rem 0;background:#fff;border:2px solid #000;box-shadow:3px 3px 0 0 #000;padding:1rem;"><span style="font-weight:700;">Skor kamu:</span><span class="neo-badge neo-badge-orange" style="font-size:1.2rem;">{data["user_score"]}</span><span style="color:#888;">{data.get("total",0)} universitas</span></div>', unsafe_allow_html=True)
+                st.markdown(f'<div style="display:flex;align-items:center;gap:1rem;margin:1rem 0;background:#fff;border:3px solid #000;box-shadow:4px 4px 0 0 #000;padding:1rem;"><span style="font-weight:700;">Skor kamu:</span><span class="neo-badge neo-badge-red" style="font-size:1.2rem;">{data["user_score"]}</span><span style="color:#888;">{data.get("total",0)} universitas</span></div>', unsafe_allow_html=True)
                 for u in data.get("universities", []):
                     with st.expander(f"**{u['name']}** - {u['eligible_count']} program cocok"):
                         for p in u.get("eligible_programs", []):

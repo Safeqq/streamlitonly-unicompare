@@ -20,15 +20,15 @@ CUSTOM_CSS = """
 
     .neo-card {
         background: #fff;
-        border: 2px solid #000;
-        box-shadow: 4px 4px 0 0 #000;
+        border: 4px solid #000;
+        box-shadow: 6px 6px 0 0 #000;
         padding: 1.5rem;
         border-radius: 0;
         transition: all 0.2s;
     }
     .neo-card:hover {
-        transform: translate(-1px, -1px);
-        box-shadow: 6px 6px 0 0 #000;
+        transform: translate(-2px, -2px);
+        box-shadow: 8px 8px 0 0 #000;
     }
 
     .neo-btn {
@@ -37,22 +37,22 @@ CUSTOM_CSS = """
         font-weight: 900;
         text-transform: uppercase;
         letter-spacing: 0.05em;
-        border: 2px solid #000;
-        box-shadow: 3px 3px 0 0 #000;
-        background: #FF4911;
-        color: #fff !important;
+        border: 3px solid #000;
+        box-shadow: 4px 4px 0 0 #000;
+        background: #FFCC00;
+        color: #000 !important;
         cursor: pointer;
         transition: all 0.15s;
         text-decoration: none;
         font-size: 0.875rem;
     }
     .neo-btn:hover {
-        transform: translate(1px, 1px);
-        box-shadow: 1px 1px 0 0 #000;
+        transform: translate(2px, 2px);
+        box-shadow: 2px 2px 0 0 #000;
     }
-    .neo-btn-yellow {
-        background: #FFD000;
-        color: #000 !important;
+    .neo-btn-red {
+        background: #FF3333;
+        color: #fff !important;
     }
     .neo-btn-blue {
         background: #40A9FF;
@@ -69,22 +69,22 @@ CUSTOM_CSS = """
         font-weight: 700;
         font-size: 0.75rem;
         text-transform: uppercase;
-        border: 2px solid #000;
-        box-shadow: 2px 2px 0 0 #000;
+        border: 3px solid #000;
+        box-shadow: 3px 3px 0 0 #000;
     }
-    .neo-badge-yellow { background: #FFD000; }
-    .neo-badge-orange { background: #FF4911; color: #fff; }
+    .neo-badge-yellow { background: #FFCC00; }
+    .neo-badge-red { background: #FF3333; color: #fff; }
     .neo-badge-blue { background: #40A9FF; color: #fff; }
 
     .neo-input {
-        border: 2px solid #000 !important;
-        box-shadow: 3px 3px 0 0 #000 !important;
+        border: 3px solid #000 !important;
+        box-shadow: 4px 4px 0 0 #000 !important;
         border-radius: 0 !important;
         transition: all 0.15s;
     }
     .neo-input:focus {
-        transform: translate(1px, 1px);
-        box-shadow: 1px 1px 0 0 #000 !important;
+        transform: translate(2px, 2px);
+        box-shadow: 2px 2px 0 0 #000 !important;
     }
 
     .neo-title {
@@ -98,13 +98,13 @@ CUSTOM_CSS = """
         font-weight: 900;
         text-transform: uppercase;
         letter-spacing: -0.02em;
-        border-left: 4px solid #FF4911;
+        border-left: 6px solid #FFCC00;
         padding-left: 1rem;
     }
 
     div[data-testid="stSidebar"] {
         background: #fff;
-        border-right: 2px solid #000;
+        border-right: 3px solid #000;
     }
     .sidebar-btn {
         display: block;
@@ -112,8 +112,8 @@ CUSTOM_CSS = """
         padding: 0.65rem 1rem;
         margin-bottom: 6px;
         background: #fff;
-        border: 2px solid #000;
-        box-shadow: 3px 3px 0 0 #000;
+        border: 3px solid #000;
+        box-shadow: 4px 4px 0 0 #000;
         font-weight: 700;
         font-size: 0.8rem;
         letter-spacing: 0.02em;
@@ -124,14 +124,14 @@ CUSTOM_CSS = """
         cursor: pointer;
     }
     .sidebar-btn:hover {
-        transform: translate(1px, 1px);
-        box-shadow: 1px 1px 0 0 #000;
+        transform: translate(2px, 2px);
+        box-shadow: 2px 2px 0 0 #000;
     }
 
     div.stButton > button {
-        border: 2px solid #000 !important;
+        border: 3px solid #000 !important;
         border-radius: 0 !important;
-        box-shadow: 3px 3px 0 0 #000 !important;
+        box-shadow: 4px 4px 0 0 #000 !important;
         font-weight: 700 !important;
         font-size: 0.8rem !important;
         letter-spacing: 0.02em !important;
@@ -139,37 +139,37 @@ CUSTOM_CSS = """
         text-align: left !important;
     }
     div.stButton > button:hover {
-        transform: translate(1px, 1px) !important;
-        box-shadow: 1px 1px 0 0 #000 !important;
+        transform: translate(2px, 2px) !important;
+        box-shadow: 2px 2px 0 0 #000 !important;
     }
 
     div.stTextInput input {
-        border: 2px solid #000 !important;
+        border: 3px solid #000 !important;
         border-radius: 0 !important;
-        box-shadow: 3px 3px 0 0 #000 !important;
+        box-shadow: 4px 4px 0 0 #000 !important;
     }
     div.stTextInput input:focus {
-        box-shadow: 1px 1px 0 0 #000 !important;
+        box-shadow: 2px 2px 0 0 #000 !important;
     }
 
     div.stNumberInput input {
-        border: 2px solid #000 !important;
+        border: 3px solid #000 !important;
         border-radius: 0 !important;
-        box-shadow: 3px 3px 0 0 #000 !important;
+        box-shadow: 4px 4px 0 0 #000 !important;
     }
 
     div[data-baseweb="select"] > div {
-        border: 2px solid #000 !important;
+        border: 3px solid #000 !important;
         border-radius: 0 !important;
-        box-shadow: 3px 3px 0 0 #000 !important;
+        box-shadow: 4px 4px 0 0 #000 !important;
     }
 
     .stTabs [data-baseweb="tab-list"] {
         gap: 0;
-        border-bottom: 2px solid #000;
+        border-bottom: 3px solid #000;
     }
     .stTabs [data-baseweb="tab"] {
-        border: 2px solid #000 !important;
+        border: 3px solid #000 !important;
         border-bottom: none !important;
         border-radius: 0 !important;
         font-weight: 700;
@@ -177,14 +177,14 @@ CUSTOM_CSS = """
         font-size: 0.8rem;
     }
     .stTabs [aria-selected="true"] {
-        background: #FF4911 !important;
-        color: #fff !important;
+        background: #FFCC00 !important;
+        color: #000 !important;
     }
 
     .stMetric {
         background: #fff;
-        border: 2px solid #000;
-        box-shadow: 3px 3px 0 0 #000;
+        border: 3px solid #000;
+        box-shadow: 4px 4px 0 0 #000;
         padding: 1rem;
     }
     .stMetric label {
@@ -197,7 +197,7 @@ CUSTOM_CSS = """
         font-size: 1.5rem;
     }
 
-    hr { border-top: 2px solid #000 !important; }
+    hr { border-top: 3px solid #000 !important; }
 </style>
 """
 
@@ -207,13 +207,13 @@ with st.sidebar:
     st.markdown(
         """
         <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
-            <div style="width:40px;height:40px;background:#FF4911;border:2px solid #000;
-                        box-shadow:3px 3px 0 0 #000;display:flex;align-items:center;justify-content:center;">
-                <span style="color:#fff;font-weight:900;font-size:1.2rem;">U</span>
+            <div style="width:40px;height:40px;background:#FFCC00;border:3px solid #000;
+                        box-shadow:4px 4px 0 0 #000;display:flex;align-items:center;justify-content:center;">
+                <span style="color:#000;font-weight:900;font-size:1.2rem;">U</span>
             </div>
             <div>
                 <div style="font-weight:900;text-transform:uppercase;letter-spacing:-0.02em;font-size:1.1rem;">UNICOMPARE</div>
-                <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.08em;color:#666;">PBKK Final Project</div>
+                <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.08em;color:#666;">PBKK FINAL PROJECT</div>
             </div>
         </div>
     """,
@@ -226,10 +226,8 @@ with st.sidebar:
         (" Bandingkan Skor", "compare"),
         (" Bandingkan Pilihan", "compare_choices"),
     ]
-    if is_authenticated():
-        pages_list.append((" Favorit", "favorites"))
-        if is_admin():
-            pages_list.append((" Admin", "admin"))
+    if is_admin():
+        pages_list.append((" Admin", "admin"))
     pages_list.append((" Akun", "auth"))
 
     if "page" not in st.session_state:
@@ -245,8 +243,8 @@ with st.sidebar:
         st.markdown(
             f"""
             <div style="display:flex;align-items:center;gap:8px;padding:8px 0;">
-                <div style="width:32px;height:32px;background:#FFD000;border:2px solid #000;
-                            display:flex;align-items:center;justify-content:center;font-weight:900;font-size:0.85rem;">
+                <div style="width:32px;height:32px;background:#FF3333;border:3px solid #000;
+                            display:flex;align-items:center;justify-content:center;font-weight:900;font-size:0.85rem;color:#fff;">
                     {get_username()[0].upper()}
                 </div>
                 <span style="font-weight:700;font-size:0.85rem;">{get_username()}</span>
@@ -262,7 +260,7 @@ PAGES = {
     "universities": "screens.universities",
     "compare": "screens.compare",
     "compare_choices": "screens.compare_choices",
-    "favorites": "screens.favorites",
+
     "admin": "screens.admin",
     "auth": "screens.auth",
 }

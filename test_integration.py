@@ -35,11 +35,16 @@ ok(f"Choices: {len(r['pilihan'])} matched, selisih={r['perbandingan']['selisih']
 body = json.dumps({"username": "test123", "password": "test123"}).encode()
 req = urllib.request.Request(f"{api}/api/auth/register", data=body, headers={"Content-Type": "application/json"})
 r = json.loads(urllib.request.urlopen(req).read())
-ok(f"Register OK")
+ok(f"Register: token={r['access_token'][:20]}...")
 
-req = urllib.request.Request(f"{api}/api/favorites", headers={"Authorization": f"Bearer {r['access_token']}"})
+body = json.dumps({"username": "test123", "password": "test123"}).encode()
+req = urllib.request.Request(f"{api}/api/auth/login", data=body, headers={"Content-Type": "application/json"})
 r = json.loads(urllib.request.urlopen(req).read())
-ok(f"Favorites: {len(r['favorites'])} items")
+ok(f"Login: token={r['access_token'][:20]}...")
+
+req = urllib.request.Request(f"{api}/api/auth/me", headers={"Authorization": f"Bearer {r['access_token']}"})
+me = json.loads(urllib.request.urlopen(req).read())
+ok(f"Me: user={me['username']} role={me['role']}")
 
 print("\nTesting Frontend...")
 r = urllib.request.urlopen(fe)
